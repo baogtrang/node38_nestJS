@@ -1,0 +1,161 @@
+# tạo table users
+
+CREATE TABLE users(
+	user_id INT PRIMARY KEY AUTO_INCREMENT,
+	full_name varchar(100),
+	email varchar(255),
+	pass_word varchar(255)
+);
+
+INSERT INTO users (full_name, email, pass_word) VALUES
+('Emily Johnson', 'emily.j@example.com', 'pass789'),
+('Michael Brown', 'michael.b@example.com', 'passwordXYZ'),
+('Sophia Williams', 'sophia.w@example.com', 'secure123'),
+('Daniel Miller', 'daniel.m@example.com', 'pass432'),
+('Olivia Davis', 'olivia.d@example.com', 'mypassword'),
+('Matthew Taylor', 'matthew.t@example.com', 'letmein123'),
+('Emma Wilson', 'emma.w@example.com', 'password789'),
+('Andrew Anderson', 'andrew.a@example.com', 'ilovecoding'),
+('Ava Martinez', 'ava.m@example.com', '1234abcd'),
+('William Jackson', 'william.j@example.com', 'password567'),
+('Isabella Garcia', 'isabella.g@example.com', 'qwerty123'),
+('James Harris', 'james.h@example.com', 'iloveSQL'),
+('Lily Moore', 'lily.m@example.com', 'pass987'),
+('Ethan White', 'ethan.w@example.com', 'abcde123'),
+('Madison Lee', 'madison.l@example.com', 'pass654'),
+('Aiden Smith', 'aiden.s@example.com', 'mypassword123'),
+('Chloe Brown', 'chloe.b@example.com', 'chloepass'),
+('Jackson Clark', 'jackson.c@example.com', 'password999'),
+('Avery Turner', 'avery.t@example.com', 'turnerpass'),
+('Scarlett Adams', 'scarlett.a@example.com', '12345pass');
+
+# select data
+select * from users;
+
+# tạo table restaurant
+CREATE TABLE restaurant(
+	res_id INT PRIMARY KEY AUTO_INCREMENT,
+	res_name varchar(100),
+	image varchar(255),
+	decs varchar(255)
+)
+
+INSERT INTO restaurant (res_name, image, decs) VALUES
+('Cafe Bella', 'cafe_bella.jpg', 'A cozy cafe with a variety of coffee options.'),
+('Pizza Palace', 'pizza_palace.jpg', 'Home of the best pizza in town!'),
+('Sushi Haven', 'sushi_haven.jpg', 'Fresh and delicious sushi dishes.'),
+('Burger Bistro', 'burger_bistro.jpg', 'Gourmet burgers and fries.'),
+('Thai Spice', 'thai_spice.jpg', 'Authentic Thai cuisine with a touch of spice.'),
+('Mediterranean Delight', 'mediterranean_delight.jpg', 'Experience the flavors of the Mediterranean.'),
+('Taco Fiesta', 'taco_fiesta.jpg', 'Taste the excitement of Mexican street food.'),
+('Vegetarian Oasis', 'vegetarian_oasis.jpg', 'A haven for vegetarian and vegan delights.'),
+('Steakhouse Supreme', 'steakhouse_supreme.jpg', 'Premium steaks cooked to perfection.'),
+('Seafood Harbor', 'seafood_harbor.jpg', 'Fresh seafood served with a view.'),
+('Pasta Paradise', 'pasta_paradise.jpg', 'Indulge in a variety of pasta dishes.'),
+('Deli Delight', 'deli_delight.jpg', 'Classic deli sandwiches and salads.'),
+('Indian Spice', 'indian_spice.jpg', 'Savor the rich flavors of Indian cuisine.'),
+('Smoothie Spot', 'smoothie_spot.jpg', 'Refreshing smoothies and healthy snacks.'),
+('BBQ Barn', 'bbq_barn.jpg', 'BBQ favorites in a rustic setting.'),
+('Noodle Nook', 'noodle_nook.jpg', 'A diverse selection of noodle dishes.'),
+('Crepe Corner', 'crepe_corner.jpg', 'Sweet and savory crepes for every taste.'),
+('Ice Cream Emporium', 'ice_cream_emporium.jpg', 'A paradise of ice cream flavors.'),
+('Diner Daze', 'diner_daze.jpg', 'Classic American diner with comfort food.'),
+('Pho Palace', 'pho_palace.jpg', 'Delicious Vietnamese pho and more.');
+
+# select data sau khi tạo
+SELECT * FROM restaurant;
+
+# tạo table trung gian like_res
+CREATE TABLE like_res(
+	user_id INT,
+	FOREIGN KEY(user_id) REFERENCES users(user_id),
+	
+	res_id INT,
+	FOREIGN KEY(res_id) REFERENCES restaurant(res_id),
+	
+	date_like DATE
+)
+
+INSERT INTO like_res (user_id, res_id, date_like) VALUES
+(1, 3, '2023-01-15'),
+(2, 1, '2023-02-20'),
+(3, 5, '2023-03-10'),
+(4, 8, '2023-04-05'),
+(5, 12, '2023-05-12'),
+(1, 15, '2023-06-18'),
+(2, 18, '2023-07-22'),
+(3, 20, '2023-08-30'),
+(4, 7, '2023-09-02'),
+(5, 10, '2023-10-08'),
+(1, 2, '2023-11-15'),
+(2, 4, '2023-12-20'),
+(3, 6, '2024-01-25'),
+(4, 9, '2024-02-28'),
+(5, 11, '2024-03-05'),
+(1, 13, '2024-04-10'),
+(2, 16, '2024-05-15'),
+(3, 19, '2024-06-20'),
+(4, 14, '2024-07-25'),
+(5, 17, '2024-08-30');
+
+# tạo table rate_res
+CREATE TABLE rate_res(
+	user_id INT,
+	FOREIGN KEY(user_id) REFERENCES users(user_id),
+
+	res_id INT,
+	FOREIGN KEY(res_id) REFERENCES restaurant(res_id),
+	
+	amount INT,
+	date_rate DATE
+)
+
+INSERT INTO rate_res (user_id, res_id, amount, date_rate) VALUES
+(1, 3, 4, '2023-01-15'),
+(2, 1, 5, '2023-02-20'),
+(3, 5, 3, '2023-03-10'),
+(4, 8, 4, '2023-04-05'),
+(5, 12, 5, '2023-05-12'),
+(1, 15, 4, '2023-06-18'),
+(2, 18, 3, '2023-07-22'),
+(3, 20, 5, '2023-08-30'),
+(4, 7, 4, '2023-09-02'),
+(5, 10, 5, '2023-10-08'),
+(1, 2, 3, '2023-11-15'),
+(2, 4, 4, '2023-12-20'),
+(3, 6, 5, '2024-01-25'),
+(4, 9, 3, '2024-02-28'),
+(5, 11, 4, '2024-03-05'),
+(1, 13, 5, '2024-04-10'),
+(2, 16, 3, '2024-05-15'),
+(3, 19, 4, '2024-06-20'),
+(4, 14, 5, '2024-07-25'),
+(5, 17, 3, '2024-08-30');
+
+select * from rate_res;
+
+
+# select data sau khi tạo
+select * from like_res;
+
+# câu 1: tìm 3 người like nhà hàng nhiều nhất
+# inner join
+select COUNT(u.user_id) as 'number of likes', u.full_name from like_res as lr
+inner join users as u on lr.user_id = u.user_id
+group by u.full_name
+order by COUNT(u.user_id) desc
+limit 3
+
+# inner join
+-- 
+
+-- COUNT, MAX, MIN, AVG,..... GROUP BY đi kèm
+
+# left join
+select * from users as u
+left join like_res as lr on lr.user_id = u.user_id
+left join rate_res as rr on rr.user_id = u.user_id
+
+-- 36 data
+-- 20 data trong table like_res
+-- và 16 data trong table user
