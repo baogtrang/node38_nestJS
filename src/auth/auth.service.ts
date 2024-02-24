@@ -8,8 +8,8 @@ import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 
 // khi import lib khác vào , import 2 bước
-// B1: import module lib vào module đang code
-// b2: import service lib vào service đang code
+// B1: import lib module vào module đang code
+// B2: import lib service vào service đang code
 
 @Injectable()
 export class AuthService {
